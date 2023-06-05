@@ -1,11 +1,17 @@
 import Header from "./Components/Header"
+import FeedbackList from "./Components/FeedbackList"
+import { useState } from "react"
+import Feedbackdata from "./data/Feedbackdata"
 
 function App(){
+
+    const [feedback,setFeedback] = useState(Feedbackdata)
     
     return (
     <>
     <Header />                                         
     <div className = 'Container'>
+    <FeedbackList  feedback = {feedback}/>
     <p>Random Value Generator = {Math.random()*(9+9)}
     </p>
     </div>

@@ -35,15 +35,25 @@ header {
 .card {
   background-color: #fff;
   color: #333;
-  border-radius: 15px;
-  padding: 40px 50px;
-  margin: 20px 0;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 20px 300px;  
   position: relative;
 }
 
+
+.num-display {
+  position:absolute;
+  top: -10px;
+  left: -10px;
+  
+  
+}
+ 
 .card.reverse {
   background-color: rgba(0, 0, 0, 0.4);
-  color: #fff;
+  color: #F5F5DC;
+  outline:#fff solid 2px;
 }
 
 .card h2 {
@@ -125,11 +135,6 @@ input:focus {
   align-items: center;
 }
 
-.num-display {
-  position: absolute;
-  top: -10px;
-  left: -10px;
-}
 
 .close,
 .edit {
