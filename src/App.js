@@ -5,13 +5,20 @@ import Feedbackdata from "./data/Feedbackdata"
 
 function App(){
 
+    const deleteFeedback = (id) =>{
+        if (window.confirm("Are you sure you want to delete?")){
+            setFeedback(feedback.filter((item) => item.id !== id))
+        }
+    }
+
+
     const [feedback,setFeedback] = useState(Feedbackdata)
     
     return (
     <>
     <Header />                                         
     <div className = 'Container'>
-    <FeedbackList  feedback = {feedback}/>
+    <FeedbackList  feedback = {feedback} handleDelete={ deleteFeedback}/>
     <p>Random Value Generator = {Math.random()*(9+9)}
     </p>
     </div>
