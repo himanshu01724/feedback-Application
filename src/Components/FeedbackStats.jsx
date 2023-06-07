@@ -1,0 +1,25 @@
+import PropTypes from "prop-types"
+
+function FeedbackStats({feedback}){
+
+    let average = feedback.reduce((acc,curr)=>{
+        const va = acc + curr.rating
+        return va
+    },0)/feedback.length
+    
+    console.log(average)
+
+    return (
+    <div className = "feedback-stats">
+        <h4> {feedback.length} Reviews</h4>
+        <h4> Average Rating = {isNaN(average.toFixed(2)) ? 0: average.toFixed(1)}</h4>
+    </div>
+    )
+}
+
+FeedbackStats.propTypes = {
+    feedback:PropTypes.array.isRequired,
+
+}
+
+export default FeedbackStats
