@@ -9,7 +9,7 @@ function FeedbackItem({item,handleDelete}){
     // }
 
     return (
-        <Card  >
+        <Card reverse={false} >
             <div className="num-display">{item.rating}</div>
             <button onClick = { () => handleDelete(item.id)}
             className="close">
