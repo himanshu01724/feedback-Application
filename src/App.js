@@ -5,6 +5,9 @@ import { useState } from "react"
 import Feedbackdata from "./data/Feedbackdata"
 import FeedbackStats from "./Components/FeedbackStats"
 import FeedbackForm from "./Components/FeedbackForm"
+import AboutIcon from "./Components/AboutIcon"
+import AboutPage from "./Pages/AboutPage"
+import {BrowserRouter,Routes,Route} from "react-router-dom"
 
 function App(){
 
@@ -24,16 +27,29 @@ function App(){
     }
     
     return (
-    <>
-    <Header />                                         
+    <BrowserRouter>
+        
+    <Header />
+
+                                                 
     <div className = 'Container'>
-    <FeedbackForm handleAdd = {addFeedback}/>
+    <Routes>
+    <Route exact path= "/" element = {
+        <>
+        <FeedbackForm handleAdd = {addFeedback}/>
         <FeedbackStats feedback = {feedback}/>
-    <FeedbackList  feedback = {feedback} handleDelete={ deleteFeedback}/>
-    <p>Random Value Generator = {Math.random()*(9+9)}
-    </p>
+        <FeedbackList  feedback = {feedback} handleDelete={ deleteFeedback}/>
+            <p>Random Value Generator = {Math.random()*(9+9)}
+            </p>
+        </>
+    }>
+    </Route>
+           
+    <Route path = "/about" element={<AboutPage/>}/>
+    </Routes>
+    <AboutIcon/> 
     </div>
-    </>
+    </BrowserRouter>
     )   
 }
 export default App
