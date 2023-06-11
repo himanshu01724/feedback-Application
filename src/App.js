@@ -8,14 +8,10 @@ import FeedbackForm from "./Components/FeedbackForm"
 import AboutIcon from "./Components/AboutIcon"
 import AboutPage from "./Pages/AboutPage"
 import {BrowserRouter,Routes,Route} from "react-router-dom"
+import {FeedbackProvider} from "./Context/FeedbackContext"
 
 function App(){
 
-    const deleteFeedback = (id) =>{
-        if (window.confirm("Are you sure you want to delete?")){
-            setFeedback(feedback.filter((item) => item.id !== id))
-        }
-    }
 
 
     const [feedback,setFeedback] = useState(Feedbackdata)
@@ -27,29 +23,26 @@ function App(){
     }
     
     return (
+        <FeedbackProvider>
     <BrowserRouter>
-        
-    <Header />
-
-                                                 
+    <Header />                           
     <div className = 'Container'>
     <Routes>
     <Route exact path= "/" element = {
         <>
         <FeedbackForm handleAdd = {addFeedback}/>
-        <FeedbackStats feedback = {feedback}/>
-        <FeedbackList  feedback = {feedback} handleDelete={ deleteFeedback}/>
-            <p>Random Value Generator = {Math.random()*(9+9)}
-            </p>
+        <FeedbackStats />
+        <FeedbackList />
+            
         </>
     }>
     </Route>
-           
     <Route path = "/about" element={<AboutPage/>}/>
     </Routes>
     <AboutIcon/> 
     </div>
     </BrowserRouter>
+    </FeedbackProvider>
     )   
 }
 export default App
@@ -61,3 +54,4 @@ export default App
 //default() var = number, text, anything This is for working with props.
 //"Evertime you Refresh the number will change !!"
 //When the header value is not given it will take default values
+//<p>Random Value Generator = {Math.random()*(9+9)}</p>
