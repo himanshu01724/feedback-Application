@@ -1,17 +1,25 @@
-import {createContext,useState} from 'react'
+import {createContext,useState,useEffect} from 'react'
 import {v4 as uuidv4} from 'uuid'
 
 const FeedbackContext = createContext()
 
 export const FeedbackProvider  = ({children}) =>{
 
-    const [feedback,setFeedback] = useState([
-        {
-            id:1,
-            text:'This is from Context Api',
-            rating:9
-        }
-    ])
+    const [feedback,setFeedback] = useState([    ])
+
+    useEffect(() =>{
+        fetchFeedback()
+    },[])
+    
+    //fetch Feedback from the backend
+
+    const fetchFeedback = async () =>{
+        const response = await fetch(`/feedback`)
+
+        const data = await response.json()
+
+        setFeedback(data);
+    }
 
     const [feedbackEdit,setFeedbackEdit] = useState({
         item:{},
@@ -19,8 +27,9 @@ export const FeedbackProvider  = ({children}) =>{
     })
 
     
-    const deleteFeedback = (id) =>{
+    const deleteFeedback = async(id) =>{
         if (window.confirm("Are you sure you want to delete?")){
+            await fetch(`/feedback/${id}`,{method:'DELETE'})
             setFeedback(feedback.filter((item) => item.id !== id))
         }
     }

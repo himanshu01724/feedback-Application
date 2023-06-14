@@ -1,5 +1,3 @@
-import {useState} from 'react'
-import FeedbackItem from "./FeedbackItem"
 import FeedbackContext from "../Context/FeedbackContext"
 import { useContext } from 'react'
 
